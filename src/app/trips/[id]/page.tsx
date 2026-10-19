@@ -1,17 +1,8 @@
 import { notFound } from "next/navigation";
-
-const trips = [
-  {
-    id: "1",
-    title: "杭州三日游",
-    content: "这是一个关于杭州三日游的详细行程安排。",
-  },
-  {
-    id: "2",
-    title: "成都五日游",
-    content: "这是一个关于成都五日游的详细行程安排。",
-  },
-];
+import { trips } from "@/data/trips";
+import DailyPlanCard from "@/components/daily-plan-card";
+import TripTitleEditor from "@/components/trip-title-editor";
+import DailyPlansEditor from "@/components/daily-plans-editor";
 
 export default async function TripDetailPage({
   params,
@@ -29,9 +20,11 @@ export default async function TripDetailPage({
 
   return (
     <main>
-      <h1>{trip.title}</h1>
+      <TripTitleEditor key={trip.id} initialTitle={trip.title} />
       <p>行程编号：{trip.id}</p>
       <p>{trip.content}</p>
+      <h2>每日行程安排</h2>
+      <DailyPlansEditor initialPlans={trip.dailyPlans} />
     </main>
   );
 }
