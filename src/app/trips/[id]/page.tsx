@@ -1,6 +1,5 @@
 import { notFound } from "next/navigation";
 import { trips } from "@/data/trips";
-import DailyPlanCard from "@/components/daily-plan-card";
 import TripTitleEditor from "@/components/trip-title-editor";
 import DailyPlansEditor from "@/components/daily-plans-editor";
 
