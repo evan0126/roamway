@@ -1,8 +1,11 @@
-from pydantic import BaseModel, Field, model_validator
+from pydantic import BaseModel, ConfigDict, Field, model_validator
 
 
 # 表示一天的安排。
 class DailyPlan(BaseModel):
+    # 去除文本首尾空白，再按各字段规则校验。
+    model_config = ConfigDict(str_strip_whitespace=True)
+    
     day: int = Field(gt=0)
     morning: str = Field(min_length=1)
     afternoon: str = Field(min_length=1)
@@ -10,7 +13,10 @@ class DailyPlan(BaseModel):
 
 
 class TripInput(BaseModel):
-    title: str = Field(min_length=1)
+    # 去除文本首尾空白，再按各字段规则校验。
+    model_config = ConfigDict(str_strip_whitespace=True)
+     
+    title: str = Field(min_length=1, examples=["杭州一日游"])
     destination: str = Field(min_length=1)
     days: int = Field(gt=0)
     budget: float = Field(ge=0, allow_inf_nan=False)

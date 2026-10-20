@@ -14,7 +14,7 @@ def health() -> dict:
     return {"status": "ok"}
 
 
-@app.post("/trips")
+@app.post("/trips", response_model=TripInput)
 def create_trip(trip: TripInput) -> dict:
     # 请求体先经过校验；本节只返回数据，尚未保存行程。
     return trip.model_dump()
