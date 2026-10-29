@@ -18,7 +18,7 @@ class TripInput(BaseModel):
      
     title: str = Field(min_length=1, examples=["杭州一日游"])
     destination: str = Field(min_length=1)
-    days: int = Field(gt=0)
+    days: int = Field(gt=0, le=30)
     budget: float = Field(ge=0, allow_inf_nan=False)
 
     # 至少一条安排，每条都按 DailyPlan 校验。
