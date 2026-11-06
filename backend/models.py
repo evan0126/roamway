@@ -39,4 +39,8 @@ class TripInput(BaseModel):
 
         # 校验成功后，返回当前模型对象。
         return self
-    
+
+
+# TripOutput(TripInput) 表示继承：TripOutput 会拥有 TripInput 已有的字段和校验规则，不用重新复制一遍。
+class TripOutput(TripInput):
+    id: int = Field(gt=0)
